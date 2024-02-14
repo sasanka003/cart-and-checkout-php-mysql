@@ -15,6 +15,7 @@
     }
 </style>
 <body>
+
 <div class="container">
     <div class="text-center">
         <h2 style="margin-top: 0px; padding-top: 0; padding-left: 5px; ">Update your seats</h2>

@@ -16,6 +16,8 @@
     }
 </style>
 <body>
+<?php require "nav/nav.php";?>
+
 	<div class="container">
 		<pre style="padding: 0; margin: 0;">
 		<h2 style="margin-top: 0px; padding-top: 0; padding-left: 5px; ">Add to cart functionality in php and mysql
