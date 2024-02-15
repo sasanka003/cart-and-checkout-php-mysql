@@ -66,7 +66,7 @@
 
     <ul class="navbar-nav ml-auto d-block d-md-none">
       <li class="nav-item">
-        <a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single"></i> <sup id="itemCountMobile" class="badge badge-danger"><?php echo count($cartItems); ?></sup></a>
+        <a class="cart btn btn-link" href="cart.php"><i class="bx bxs-cart icon-single"></i> <sup id="itemCountMobile" class="badge badge-danger"><?php echo count($cartItems); ?></sup></a>
       </li>
     </ul>
 
@@ -79,7 +79,7 @@
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single"></i> <sup id="itemCount" class="badge badge-danger"><?php echo count($cartItems); ?></sup></a>
+          <a class="cart btn btn-link" href="cart.php"><i class="bx bxs-cart icon-single"></i> <sup id="itemCount" class="badge badge-danger"><?php echo count($cartItems); ?></sup></a>
         </li>
         <li class="nav-item ml-md-3">
           <a class="btn btn-primary" href="#"><i class="bx bxs-user-circle mr-1"></i> Log In / Register</a>
@@ -135,7 +135,7 @@
 </div>
 
 <!-- Sidebar -->
-<!-- <nav id="sidebar">
+<nav id="sidebar">
   <div class="sidebar-header">
     <div class="container">
       <div class="row align-items-center">
@@ -214,7 +214,7 @@
     <li><a href="#" target="_blank" title=""><i class="bx bxl-instagram"></i></a></li>
   </ul>
 
-</nav> -->
+</nav>
 
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>

@@ -77,7 +77,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12 text-right">
-				<a href="cart.php" class="btn btn-success">Seats <span class="glyphicon glyphicon-play"></span></a>
+				<a href="cart.php" class="btn btn-success"><i class="bx bxs-cart icon-single"></i> Cart</a>
 			</div>
 		</div>
 	</div>
@@ -90,7 +90,7 @@
             </strong>
         </a>
     </div>
-	
+
 	</body>
 	<script type="text/javascript">
 	function addToCart(wId, btnId) {
