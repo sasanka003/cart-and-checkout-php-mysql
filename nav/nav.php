@@ -1,298 +1,25 @@
 <html lang= en >
 
 <head>
-  <meta charset= UTF-8 >
-  
 
     <link rel= apple-touch-icon type= image/png href= https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png />
-
-    <meta name= apple-mobile-web-app-title content= CodePen >
-
     <link rel= shortcut icon type= image/x-icon href= https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico />
-
     <link rel= mask-icon type= image/x-icon href= https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg color= #111 />
-
-
-
-  
-    <script src= https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js ></script>
-
-
-  <title>CodePen - E-commerce Navigation using Bootstrap 4</title>
-
-    <link rel= canonical href= https://codepen.io/iamsahilvhora/pen/MdQqVR >
-  
+    
+    <title>E-commerce Cart</title>
   
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.2/css/boxicons.min.css'>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.2/css/boxicons.min.css'>
+  <link rel='stylesheet' href='nav.css'>
 
-  
-<style>
-.btn .bx {
-  vertical-align: inherit;
-  margin-top: -3px;
-  font-size: 1.15rem;
-}
-
-.form-control {
-  height: calc(2.5rem + 2px);
-  padding: 0.5rem 1.5rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.3rem;
-}
-
-.btn {
-  font-size: 1rem;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-}
-
-.bx.icon-single {
-  font-size: 1.5rem;
-}
-
-.form-inline .form-control {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.form-inline .btn {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  .form-inline .form-control {
-    width: 210px;
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  .form-inline .form-control {
-    width: 440px;
-  }
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  .form-inline .form-control {
-    width: 600px;
-  }
-}
-
-.sub-menu.navbar-light .navbar-nav .active > .nav-link,
-.sub-menu.navbar-light .navbar-nav .nav-link.active,
-.sub-menu.navbar-light .navbar-nav .nav-link.show,
-.sub-menu.navbar-light .navbar-nav .show > .nav-link {
-  border-bottom: 3px solid #007bff;
-  color: #007bff;
-}
-
-.navbar .navbar-toggler {
-  border: none;
-}
-
-.navbar-light .navbar-toggler:focus {
-  outline: none;
-}
-
-.navbar {
-  padding: 1rem;
-}
-
-.main-menu {
-  position: relative;
-  z-index: 3;
-}
-
-.sub-menu {
-  position: relative;
-  z-index: 2;
-  padding: 0 1rem;
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  .sub-menu {
-    padding: 0 1rem;
-  }
-
-  .sub-menu.navbar-expand-md .navbar-nav .nav-link {
-    padding: 1rem 1.5rem;
-  }
-}
-
-.navbar.bg-light {
-  background: #fff !important;
-  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.1);
-}
-
-.user-dropdown .nav-link {
-  padding: 0.15rem 0;
-}
-
-#sidebar {
-  background: #fff;
-  height: 100%;
-  left: -100%;
-  top: 0;
-  bottom: 0;
-  overflow: auto;
-  position: fixed;
-  transition: 0.4s ease-in-out;
-  width: 84%;
-  z-index: 5001;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  padding: 1.25rem 1rem 1rem;
-}
-
-#sidebar.active {
-  left: 0;
-}
-
-#sidebar .sidebar-header {
-  background: #fff;
-  border-bottom: 1px solid #e4e4e4;
-  padding-bottom: 1.5rem;
-}
-
-#sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #e4e4e4;
-  margin-bottom: 40px;
-}
-
-#sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-#sidebar ul li a {
-  padding: 10px 16px;
-  font-size: 1.1em;
-  display: block;
-  color: #000;
-}
-
-#sidebar ul li a:hover {
-  color: #7386d5;
-  background: #fff;
-}
-
-#sidebar ul li.active > a,
-#sidebar a[aria-expanded= true] {
-  color: #007bff;
-  background: #e6f2ff;
-  border-radius: 6px;
-}
-
-a[data-toggle= collapse] {
-  position: relative;
-}
-
-#sidebar .links .dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-}
-
-section {
-  padding: 6rem;
-  background: #e4e4e4;
-  margin-bottom: 30px;
-  position: relative;
-  z-index: 1;
-}
-
-.overlay {
-  background: rgba(0, 0, 0, 0.7);
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  top: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  z-index: -1;
-  width: 100%;
-  opacity: 0;
-}
-
-.overlay.visible {
-  opacity: 1;
-  z-index: 5000;
-}
-
-ul.social-icons {
-  list-style-type: none;
-  padding-left: 0;
-  margin-bottom: 0;
-}
-
-ul.social-icons li {
-  display: inline-block;
-  margin-right: 0px;
-  margin-bottom: 0;
-}
-
-#sidebar ul.social-icons li a {
-  font-size: 24px;
-}
-
-.utility-nav {
-  background: #e4e4e4;
-  padding: 0.5rem 1rem;
-}
-
-.utility-nav p {
-  margin-bottom: 0;
-}
-
-.search-bar {
-  position: relative;
-  z-index: 2;
-  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.1);
-}
-
-.search-bar .form-control {
-  width: calc(100% - 45px);
-}
-
-.avatar {
-  border-radius: 50%;
-  width: 4.5rem;
-  height: 4.5rem;
-  margin-right: 8px;
-}
-
-.avatar.avatar-xs {
-  width: 2.25rem;
-  height: 2.25rem;
-}
-
-.user-dropdown .dropdown-menu {
-  left: auto;
-  right: 0;
-}
-</style>
 
   <script>
-  window.console = window.console || function(t) {};
-</script>
+    window.console = window.console || function(t) {};
+  </script>
 
   <script>
-  window.console = window.console || function(t) {};
-</script>
+    window.console = window.console || function(t) {};
+  </script>
 
   
   
@@ -334,10 +61,11 @@ ul.social-icons li {
     </ul>
 
     <div class="collapse navbar-collapse">
-      <form class="form-inline my-2 my-lg-0 mx-auto">
-        <input class="form-control" type="search" placeholder="Search for products..." aria-label="Search">
-        <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="bx bx-search"></i></button>
-      </form>
+    <form class="form-inline my-2 my-lg-0 mx-auto">
+    <input class="form-control" type="search" placeholder="Search for products..." aria-label="Search">
+    <button class="btn btn-success my-2 my-sm-0 h-100" type="submit"><i class="bx bx-search"></i></button>
+</form>
+
 
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -400,7 +128,7 @@ ul.social-icons li {
 </div>
 
 <!-- Sidebar -->
-<nav id="sidebar">
+<!-- <nav id="sidebar">
   <div class="sidebar-header">
     <div class="container">
       <div class="row align-items-center">
@@ -479,39 +207,11 @@ ul.social-icons li {
     <li><a href="#" target="_blank" title=""><i class="bx bxl-instagram"></i></a></li>
   </ul>
 
-</nav>
+</nav> -->
 
-<section></section>
-<section></section>
-<section></section>
-<section></section>
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'></script>
-      <script id="rendered-js">
-$(document).ready(function () {
-  $("#sidebarCollapse").on("click", function () {
-    $("#sidebar").addClass("active");
-  });
-
-  $("#sidebarCollapseX").on("click", function () {
-    $("#sidebar").removeClass("active");
-  });
-
-  $("#sidebarCollapse").on("click", function () {
-    if ($("#sidebar").hasClass("active")) {
-      $(".overlay").addClass("visible");
-      console.log("it's working!");
-    }
-  });
-
-  $("#sidebarCollapseX").on("click", function () {
-    $(".overlay").removeClass("visible");
-  });
-});
-//# sourceURL=pen.js
-    </script>
-
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'></script> -->
+  <script src='nav.css'></script>
   
-</body>
 
-</html>

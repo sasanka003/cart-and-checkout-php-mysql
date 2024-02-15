@@ -159,13 +159,13 @@
 }
 
 #sidebar ul li.active > a,
-#sidebar a[aria-expanded="true"] {
+#sidebar a[aria-expanded= true] {
   color: #007bff;
   background: #e6f2ff;
   border-radius: 6px;
 }
 
-a[data-toggle="collapse"] {
+a[data-toggle= collapse] {
   position: relative;
 }
 
@@ -202,11 +202,6 @@ section {
   opacity: 1;
   z-index: 5000;
 }
-
-/* .mobiHeader .menuActive~.overlay {
-    opacity: 1;
-    width: 100%;
-} */
 
 ul.social-icons {
   list-style-type: none;
