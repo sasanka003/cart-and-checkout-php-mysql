@@ -15,23 +15,15 @@
 </style>
 </head>
 <body>
+  <?php require "nav/nav.php";?>
 
   <?php 
-    session_start();
-
-    require_once('db/DbConnect.php');
-    $db   = new DbConnect();
-    $conn = $db->connect();
-
     require 'classes/customer.class.php';
     $objCustomer = new customer($conn);
     $objCustomer->setId($_SESSION['cid']);
     $customer = $objCustomer->getCustomerById();
 
-    require 'classes/cart.class.php';
-    $objCart = new cart($conn);
-    $objCart->setCid($customer['id']);
-    $cartItems = $objCart->getAllCartItems();
+    $objCart->setCid($_SESSION['cid']);
     $cartPrices = $objCart->calculatePrices($cartItems);
     
   ?>
@@ -162,10 +154,15 @@
     </div>
   </form>
 </div>
+
 <div style="position: fixed; bottom: 10px; right: 10px; color: green;">
-    <strong>
-        Durgesh Sahani
-    </strong>
+    <a href="https://www.instagram.com/your_instagram_username" target="_blank" rel="noopener noreferrer">
+        <i class="material-icons" style="vertical-align: middle;">camera_alt</i>
+        <strong style="margin-left: 5px;">
+            Instagram
+        </strong>
+    </a>
 </div>
+
 </body>
 </html>

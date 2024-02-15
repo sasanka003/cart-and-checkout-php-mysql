@@ -16,23 +16,16 @@
 </style>
 <body>
 
+    <?php require "nav/nav.php";?>
 <div class="container">
+
     <div class="text-center">
         <h2 style="margin-top: 0px; padding-top: 0; padding-left: 5px; ">Update your seats</h2>
     </div>
     <hr>
     <?php 
-        session_start();
-
-        require_once('db/DbConnect.php');
-        $db   = new DbConnect();
-        $conn = $db->connect();
-            
-        require 'classes/cart.class.php';
-        $objCart = new cart($conn);
         $objCart->setCid($_SESSION['cid']);
-        $cartItems = $objCart->getAllCartItems();
-        
+
         $cartCss = 'display: none';
         $emptyCss = 'display: block';
         if (count($cartItems) > 0) {
@@ -40,11 +33,7 @@
             $emptyCss = 'display: none';
         }
         ?>
-    <div class="row">
-        <div class="col-md-12 text-right">
-            <a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?php echo count($cartItems); ?></sup></a>
-        </div>
-    </div>
+
 
     <div class="col-md-10 col-md-offset-1">
         <div class="alert alert-dismissible" role="alert">
@@ -162,10 +151,14 @@
     </div>
 
     <div style="position: fixed; bottom: 10px; right: 10px; color: green;">
-        <strong>
-            Durgesh Sahani
-        </strong>
+        <a href="https://www.instagram.com/your_instagram_username" target="_blank" rel="noopener noreferrer">
+            <i class="material-icons" style="vertical-align: middle;">camera_alt</i>
+            <strong style="margin-left: 5px;">
+                Instagram
+            </strong>
+        </a>
     </div>
+
 </body>
 <script type="text/javascript">
     function updateCart(pId, cartId) {

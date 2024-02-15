@@ -1,16 +1,29 @@
-<html lang= en >
+      <?php 
+        session_start();
 
-<head>
+        require_once('db/DbConnect.php');
+        $db   = new DbConnect();
+        $conn = $db->connect();
+            
+        require 'classes/cart.class.php';
+        $objCart = new cart($conn);
+        $customer['id'] = ($_SESSION['cid'] !== null) ? $objCart->setCid($_SESSION['cid']) : 0;
+        $cartItems = ($_SESSION['cid'] !== null) ? $objCart->getAllCartItems() : [];
+
+      ?>
+
+
 
     <link rel= apple-touch-icon type= image/png href= https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png />
     <link rel= shortcut icon type= image/x-icon href= https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico />
     <link rel= mask-icon type= image/x-icon href= https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg color= #111 />
-    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <title>E-commerce Cart</title>
   
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.2/css/boxicons.min.css'>
-  <link rel='stylesheet' href='nav.css'>
+  <link rel='stylesheet' href='nav/nav.css'>
 
 
   <script>
@@ -21,9 +34,6 @@
     window.console = window.console || function(t) {};
   </script>
 
-  
-  
-</head>
 
 <body translate="no">
   <div class="overlay"></div>
@@ -56,7 +66,7 @@
 
     <ul class="navbar-nav ml-auto d-block d-md-none">
       <li class="nav-item">
-        <a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single"></i> <span class="badge badge-danger">3</span></a>
+        <a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single"></i> <sup id="itemCountMobile" class="badge badge-danger"><?php echo count($cartItems); ?></sup></a>
       </li>
     </ul>
 
@@ -69,7 +79,7 @@
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single"></i> <span class="badge badge-danger">3</span></a>
+          <a class="btn btn-link" href="#"><i class="bx bxs-cart icon-single"></i> <sup id="itemCount" class="badge badge-danger"><?php echo count($cartItems); ?></sup></a>
         </li>
         <li class="nav-item ml-md-3">
           <a class="btn btn-primary" href="#"><i class="bx bxs-user-circle mr-1"></i> Log In / Register</a>
@@ -84,17 +94,11 @@
   <div class="container">
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item  active">
           <a class="nav-link" href="#">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Schools</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Publishers</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -108,6 +112,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
         </li>
       </ul>
     </div>
@@ -212,6 +219,6 @@
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
   <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'></script> -->
-  <script src='nav.css'></script>
+  <script src='nav/nav.js'></script>
   
 

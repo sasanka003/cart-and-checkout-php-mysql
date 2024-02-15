@@ -15,6 +15,7 @@
 		}
     	
     	$objCart = new cart($conn);
+		$cartItems = $objCart->getAllCartItems();
 		switch ($_POST['action']) {
 			case 'add':
 		    	$objCart->setCid($_SESSION['cid']);
@@ -23,9 +24,12 @@
 			 	$objCart->setQuantity(1);
 			 	$objCart->setTotalAmount($workshop['price']);
 			 	$objCart->setCreatedOn(date('Y-m-d H:i:s'));
+				
 
 			 	if($objCart->addItem()) {
-			 		echo json_encode( ["status" => 1, "msg" => "Added to cart."] );
+					$data = $objCart->calculatePrices();
+
+			 		echo json_encode( ["status" => 1, "msg" => "Added to cart.", 'data' => $data] );
 					exit;
 			 	} else {
 			 		echo json_encode( ["status" => 0, "msg" => "Opps!! Something went wrong."] );
@@ -73,7 +77,7 @@
 			 	
 			 	if($objCart->removeAllItems()) {
 
-			 		echo json_encode( ["status" => 1, "msg" => "Cart is clear."] );
+			 		echo json_encode( ["status" => 1, "msg" => "Cart is clear.", "itemCount" => 0] );
 					exit;
 			 	} else {
 			 		echo json_encode( ["status" => 0, "msg" => "Opps!! Something went wrong."] );

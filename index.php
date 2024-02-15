@@ -1,32 +1,6 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-<link rel= apple-touch-icon type= image/png href= https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png />
-
-<link rel= shortcut icon type= image/x-icon href= https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico />
-
-<link rel= mask-icon type= image/x-icon href= https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg color= #111 />
-
-
-
-<title>E-commerce Cart</title>  
-
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/boxicons@2.0.2/css/boxicons.min.css'>
-<link rel='stylesheet' href='nav.css'>
-
-
-<script>
-window.console = window.console || function(t) {};
-</script>
-
-<script>
-window.console = window.console || function(t) {};
-</script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -46,26 +20,17 @@ window.console = window.console || function(t) {};
 	<div class="container">
 	
 		<?php 
-			require_once('db/DbConnect.php');
-			$db   = new DbConnect();
-			$conn = $db->connect();
-	
 			require 'classes/customer.class.php';
 			$objCustomer = new customer($conn);
 			$objCustomer->setEmail('durgesh@gmail.com');
 			$customer = $objCustomer->getCustomerByEmailId();
 			$_SESSION['cid'] = $customer['id'];
 	
-			require 'classes/cart.class.php';
-			$objCart = new cart($conn);
 			$objCart->setCid($customer['id']);
-			$cartItems = $objCart->getAllCartItems();
+
 		?>
-		<div class="row">
-			<div class="col-md-12 text-right">
-				<a href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span><sup id="itemCount"><?php echo count($cartItems); ?></sup></a>
-			</div>
-		</div>
+
+
 	
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
@@ -118,10 +83,14 @@ window.console = window.console || function(t) {};
 	</div>
 	
 	<div style="position: fixed; bottom: 10px; right: 10px; color: green;">
-		<strong>
-			Durgesh Sahani
-		</strong>
-	</div>
+        <a href="https://www.instagram.com/your_instagram_username" target="_blank" rel="noopener noreferrer">
+            <i class="material-icons" style="vertical-align: middle;">camera_alt</i>
+            <strong style="margin-left: 5px;">
+                Instagram
+            </strong>
+        </a>
+    </div>
+	
 	</body>
 	<script type="text/javascript">
 	function addToCart(wId, btnId) {
@@ -142,7 +111,8 @@ window.console = window.console || function(t) {};
 				$('.alert').addClass('alert-success');
 				$('#result').html(data.msg);
 				$('#'+btnId).prop('disabled',true);
-				$('#itemCount').text( parseInt( $('#itemCount').text() ) + 1);
+				$('#itemCount').text( data.data.itemCount);
+				$('#itemCountMobile').text(data.data.itemCount);
 			}
 			
 		})
