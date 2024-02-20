@@ -32,7 +32,8 @@
   <div class="container well">
     <center><h2>Book Seats</h2></center>
     <hr>
-  <form method="post" action="ccavenue/ccavRequestHandler.php" class="form-horizontal">
+
+  <form id="paymentForm" class="form-horizontal" onsubmit="paymentGateway(); return false;">
     
     <!-- <input type="hidden" name="tid" id="tid" readonly />
     <input type="hidden" name="merchant_id" value=""/>
@@ -149,7 +150,7 @@
           </p>
         </div>
         <div class="text-right">
-          <input type="submit" value="Pay Now" class="btn btn-success btn-block">
+          <button type="submit" class="btn btn-success btn-block">Pay Now</button>
         </div>
       </div>
     </div>
@@ -164,6 +165,9 @@
         </strong>
     </a>
 </div>
+
+<script src="script.js"></script>
+<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 
 </body>
 </html>
