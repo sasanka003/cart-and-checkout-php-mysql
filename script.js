@@ -4,7 +4,8 @@ function paymentGateway() {
 
     xhttp.onreadystatechange = () => {
         if(xhttp.readyState == 4 && xhttp.status == 200){
-            alert.apply(xhttp.responseText);
+            alert(xhttp.responseText);
+            var obj = JSON.parse(xhttp.responseText);
         }
 
         // Payment completed. It can be a successful failure.
@@ -32,11 +33,11 @@ function paymentGateway() {
             "return_url": "http://localhost/cart-and-checkout-php-mysql/checkout.php",     // Important
             "cancel_url": "http://localhost/cart-and-checkout-php-mysql/checkout.php",     // Important
             "notify_url": "http://sample.com/notify",
-            "order_id": "ItemNo12345",
+            "order_id": obj["order_id"],
             "items": "Door bell wireles",
-            "amount": "1000.00",
-            "currency": "LKR",
-            "hash": "45D3CBA93E9F2189BD630ADFE19AA6DC", // *Replace with generated hash retrieved from backend
+            "amount": obj["amount"],
+            "currency": obj["currency"],
+            "hash": obj["hash"], // *Replace with generated hash retrieved from backend
             "first_name": "Saman",
             "last_name": "Perera",
             "email": "samanp@gmail.com",
@@ -54,6 +55,6 @@ function paymentGateway() {
         payhere.startPayment(payment);
     }
 
-    xhttp.open("GET","payhereProcess.php",true);
+    xhttp.open("GET", "payhereProcess.php", true);
     xhttp.send();
 }
