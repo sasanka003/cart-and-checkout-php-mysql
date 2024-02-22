@@ -166,8 +166,6 @@
     </a>
 </div>
 
-<button onclick="paymentGateway();" class="btn btn-success btn-block">Pay Here</button>
-
 <script src="script.js"></script>
 <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
 
