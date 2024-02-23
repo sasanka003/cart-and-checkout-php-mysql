@@ -39,10 +39,10 @@
     <input type="hidden" name="merchant_id" value=""/>
     <input type="hidden" name="order_id" value=""/>
     <input type="hidden" name="amount" value="10.00"/> -->
-    <input type="hidden" name="currency" value="INR"/>
+    <!-- <input type="hidden" name="currency" value="INR"/>
     <input type="hidden" name="redirect_url" value="http://tutorials.lcl/cart/ccavenue/ccavResponseHandler.php"/>
     <input type="hidden" name="cancel_url" value="http://tutorials.lcl/cart/ccavenue/ccavResponseHandler.php"/>
-    <input type="hidden" name="language" value="EN"/>
+    <input type="hidden" name="language" value="EN"/> -->
 
     <div class="row">
       <div class="col-md-7 well">
