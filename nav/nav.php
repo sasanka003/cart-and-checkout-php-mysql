@@ -61,7 +61,7 @@
             </button>
 
     <a class="navbar-brand" href="#">
-      <h4 class="font-weight-bold">Logo</h4>
+      <img src="images/logo-udemy.svg" data-holder-rendered="true" height="42" style="width: auto;" />
     </a>
 
     <ul class="navbar-nav ml-auto d-block d-md-none">

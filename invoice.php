@@ -52,6 +52,10 @@
     text-align: right
 }
 
+.invoice .invoice-details .status-badge{
+    color: white
+}
+
 .invoice .invoice-details .invoice-id {
     margin-top: 0;
     color: #3989c6
@@ -190,14 +194,14 @@
         <div class="card-body">
             <div id="invoice">
                 <div class="invoice overflow-auto">
-                    <h1 class="text-center">Invoice</h1>
+                    <!-- <h1 class="text-center">Invoice</h1> -->
                     <div style="min-width: 600px">
                         <header>
                             <div class="row">
                                 <div class="col">
                                     <a target="_blank" href="https://lobianijs.com">
-                                        <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" />
-                                        </a>
+                                    <img id="logo" src="images/logo-udemy.png" data-holder-rendered="true" height="120" style="width: auto;" />
+                                    </a>
                                 </div>
                                 <div class="col company-details">
                                     <h2 class="name">
@@ -221,7 +225,7 @@
                                 </div>
                                 <div class="col invoice-details">
                                     <h1 class="invoice-id">Invoice #DS0204 </h1>
-                                    <h4><span class="badge bg-success font-size-12 ms-2">Paid</span></h4>
+                                    <h4 class="status-badge"><span class="badge bg-success font-size-12 ms-2">Paid</span></h4>
                                     <div class="date">Date of Invoice: 01/10/2018</div>
                                     <div class="date">Due Date: 30/10/2018</div>
                                 </div>
@@ -335,7 +339,7 @@
                 var pdf = new jspdf.jsPDF('p', 'mm', 'a4');
                 
                 // Add the image to the PDF
-                pdf.addImage(imgData, 'PNG', 0, 0, 210, 270);
+                pdf.addImage(imgData, 'PNG', 10, 20, 190, 200);
                 pdf.setFont('helvetica');
                 pdf.setFontSize(12);
 
