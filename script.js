@@ -5,11 +5,17 @@ function paymentGateway() {
     xhttp.onreadystatechange = () => {
         if(xhttp.readyState == 4 && xhttp.status == 200){
             alert(xhttp.responseText);
+
+            var res = xhttp.responseText;
             var obj = JSON.parse(xhttp.responseText);
-        }
+
+            var mail = obj["mail"];
+            var amount = obj["amount"];
+        
 
         // Payment completed. It can be a successful failure.
         payhere.onCompleted = function onCompleted(orderId) {
+            window.location = "invoice.php";
             console.log("Payment completed. OrderID:" + orderId);
             // Note: validate the payment and show success or failure page to the customer
         };
@@ -30,9 +36,9 @@ function paymentGateway() {
         var payment = {
             "sandbox": true,
             "merchant_id": "1225820",    // Replace your Merchant ID
-            "return_url": "http://localhost/cart-and-checkout-php-mysql/checkout.php",     // Important
+            "return_url": "http://localhost/cart-and-checkout-php-mysql/cart.php",     // Important
             "cancel_url": "http://localhost/cart-and-checkout-php-mysql/checkout.php",     // Important
-            "notify_url": "http://sample.com/notify",
+            "notify_url": "http://localhost/cart-and-checkout-php-mysql/notify.php",
             "order_id": obj["order_id"],
             "items": "Door bell wireles",
             "amount": obj["amount"],
@@ -53,6 +59,7 @@ function paymentGateway() {
         };
 
         payhere.startPayment(payment);
+        }
     }
 
     xhttp.open("GET", "payhereProcess.php", true);

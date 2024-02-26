@@ -8,6 +8,7 @@
         require 'classes/cart.class.php';
         $objCart = new cart($conn);
         $customer['id'] = ($_SESSION['cid'] !== null) ? $objCart->setCid($_SESSION['cid']) : 0;
+        // check
         $cartItems = ($_SESSION['cid'] !== null) ? $objCart->getAllCartItems() : [];
 
       ?>
