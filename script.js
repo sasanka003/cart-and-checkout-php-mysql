@@ -23,6 +23,7 @@ function paymentGateway() {
         // Payment window closed
         payhere.onDismissed = function onDismissed() {
             // Note: Prompt user to pay again or show an error page
+            //add a payment unsuccessful popup and retry button
             console.log("Payment dismissed");
         };
 
@@ -35,7 +36,7 @@ function paymentGateway() {
         // Put the payment variables here
         var payment = {
             "sandbox": true,
-            "merchant_id": "1225820",    // Replace your Merchant ID
+            "merchant_id": obj["merchant_id"],    // Replace your Merchant ID
             "return_url": "http://localhost/cart-and-checkout-php-mysql/cart.php",     // Important
             "cancel_url": "http://localhost/cart-and-checkout-php-mysql/checkout.php",     // Important
             "notify_url": "http://localhost/cart-and-checkout-php-mysql/notify.php",

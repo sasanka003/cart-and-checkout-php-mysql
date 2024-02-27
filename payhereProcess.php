@@ -1,9 +1,10 @@
 <?php
+require 'credentials.php';
 
 $amount = 3000;
-$merchant_id = "1225820";
+$merchant_id = MERCHANT_ID;
 $order_id = uniqid();
-$merchant_secret = "OTkxNTQ0NzEwMzQyNTU4ODk3MzM4NzE1MzY5MDgxNzgyMzM3NDIw";
+$merchant_secret = MERCHANT_SECRET;
 $currency = "LKR";
 
 $hash = strtoupper(
