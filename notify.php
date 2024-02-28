@@ -22,7 +22,7 @@ $local_md5sig = strtoupper(
 );
        
 if (($local_md5sig === $md5sig) AND ($status_code == 2) ){
-        echo "success";
+    echo "success";
 }
 
 ?>

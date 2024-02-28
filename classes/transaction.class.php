@@ -68,6 +68,31 @@
             }
 		}
 
+		public function getTransaction() {
+			$sql = "SELECT  
+						t.quantity, 
+						t.amount, 
+						t.orderStatus, 
+						t.createdOn,
+						c.id, 
+						c.name,
+						c.address,
+						c.email,
+						c.mobile 
+					FROM 
+						transactions t 
+						JOIN customers c ON c.id = t.cid
+					WHERE 
+						t.id = :id";
+		
+			$stmt = $this->dbConn->prepare($sql);
+			$stmt->bindParam(':id', $this->id); // Assuming you want to fetch a transaction by its ID
+			$stmt->execute();
+			$transaction = $stmt->fetch(PDO::FETCH_ASSOC);
+			return $transaction;   
+		}
+		
+
 		public function getTransactions() {
             $sql  = "SELECT 
             			t.id, 
@@ -87,6 +112,7 @@
             return $transactions;   
         }
 
+		//Update this function with correct statusIds
         public function getOrderStatusById($statusId) {
         	switch ($statusId) {
         		case 0:

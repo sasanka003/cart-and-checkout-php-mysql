@@ -50,7 +50,8 @@
             			ws.id, 
             			ws.quantity, 
             			ws.createdOn, 
-            			w.title, 
+            			w.title,
+						w.description, 
             			w.price, 
             			w.image,
             			c.name

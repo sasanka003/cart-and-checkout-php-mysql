@@ -183,6 +183,25 @@
 <body>
 <?php require "nav/nav.php";?>
 
+<?php
+
+require 'classes/transaction.class.php';
+$objTrans = new transaction($conn);
+$tId = $_SESSION['tid'];
+$objTrans->setId($_SESSION['tid']);
+$transaction = $objTrans->getTransaction();
+
+// print_r($transaction);
+
+// Update workshopSeat class instantiation
+require 'classes/workshopSeat.class.php';
+$objWseat = new workshopSeat($conn);
+$objWseat->setTid($tId);
+$Wseats = $objWseat->getWorkshopSeatsByTid();
+
+// print_r($Wseats);
+
+?>
 
 
 <div class="container" style="padding-top: 20px; padding-bottom: 100px;">
@@ -207,13 +226,13 @@
                                 </div>
                                 <div class="col company-details">
                                     <h2 class="name">
-                                        <a target="_blank" href="https://lobianijs.com">
-                                        Arboshiki
+                                        <a target="_blank" href="https://GeniZap.com">
+                                        GeniZap
                                         </a>
                                     </h2>
                                     <div>455 Foggy Heights, AZ 85004, US</div>
                                     <div>(123) 456-789</div>
-                                    <div>company@example.com</div>
+                                    <div>GeniZap.services@gmail.com</div>
                                 </div>
                             </div>
                         </header>
@@ -221,15 +240,15 @@
                             <div class="row contacts">
                                 <div class="col invoice-to">
                                     <div class="text-gray-light">INVOICE TO:</div>
-                                    <h2 class="to">John Doe</h2>
-                                    <div class="address">796 Silver Harbour, TX 79273, US</div>
-                                    <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                                    <h2 class="to"><?= $transaction['name']; ?></h2>
+                                    <div class="address"><?= $transaction['address']; ?></div>
+                                    <div class="email"><a href="mailto:".<?= $transaction['email']; ?>><?= $transaction['email']; ?></a></div>
                                 </div>
                                 <div class="col invoice-details">
                                     <h1 class="invoice-id">Invoice #DS0204 </h1>
                                     <h4 class="status-badge"><span class="badge bg-success font-size-12 ms-2">Paid</span></h4>
-                                    <div class="date">Date of Invoice: 01/10/2018</div>
-                                    <div class="date">Due Date: 30/10/2018</div>
+                                    <div class="date">Date of Invoice: <?= date('Y-m-d', strtotime($transaction['createdOn'])); ?></div>
+                                    <div class="date">Due Date: <?= date('Y-m-d', strtotime($transaction['createdOn'] . ' +1 month')); ?></div>
                                 </div>
                             </div>
                             <table border="0" cellspacing="0" cellpadding="0">
@@ -243,59 +262,42 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="no">04</td>
-                                        <td class="text-left"><h3>
-                                            <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
-                                            Youtube channel
-                                            </a>
-                                            </h3>
-                                        <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
-                                            Useful videos
-                                        </a> 
-                                        to improve your Javascript skills. Subscribe and stay tuned :)
-                                        </td>
-                                        <td class="unit">$0.00</td>
-                                        <td class="qty">100</td>
-                                        <td class="total">$0.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="no">01</td>
-                                        <td class="text-left"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
-                                        <td class="unit">$40.00</td>
-                                        <td class="qty">30</td>
-                                        <td class="total">$1,200.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="no">02</td>
-                                        <td class="text-left"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
-                                        <td class="unit">$40.00</td>
-                                        <td class="qty">80</td>
-                                        <td class="total">$3,200.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="no">03</td>
-                                        <td class="text-left"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-                                        <td class="unit">$40.00</td>
-                                        <td class="qty">20</td>
-                                        <td class="total">$800.00</td>
-                                    </tr>
+                                    <?php 
+                                    $subTotal   = 0;
+                                    $quantity   = 0;
+                                    $tax        = 10;
+                                      
+                                      foreach ($Wseats as $key => $Wseat) { 
+                                        $subTotal += $Wseat['price'];
+                                        $quantity += $Wseat['quantity'];
+                                        ?>
+                                        <tr>
+                                            <td class="no"><?= $key + 1; ?></td>
+                                            <td class="text-left">
+                                                <h3><?= $Wseat['title']; ?></h3>
+                                                <?= $Wseat['description']; ?>
+                                            </td>
+                                            <td class="unit">$<?= $Wseat['price']; ?></td>
+                                            <td class="qty"><?= $Wseat['quantity']; ?></td>
+                                            <td class="total">$<?= $Wseat['price'] * $Wseat['quantity']; ?></td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td colspan="2"></td>
                                         <td colspan="2">SUBTOTAL</td>
-                                        <td>$5,200.00</td>
+                                        <td>$<?= number_format( $subTotal, 2 ); ?>.00</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"></td>
-                                        <td colspan="2">TAX 25%</td>
-                                        <td>$1,300.00</td>
+                                        <td colspan="2">TAX (+$10)</td>
+                                        <td>$<?= number_format( $tax * $quantity, 2 ); ?>.00</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"></td>
                                         <td colspan="2">GRAND TOTAL</td>
-                                        <td>$6,500.00</td>
+                                        <td>$<?= number_format( $subTotal+($tax * $quantity), 2 ); ?>.00</td>
                                     </tr>
                                 </tfoot>
                             </table>

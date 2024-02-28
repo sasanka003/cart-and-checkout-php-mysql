@@ -25,7 +25,7 @@
 			$objCustomer->setEmail('durgesh@gmail.com');
 			$customer = $objCustomer->getCustomerByEmailId();
 			$_SESSION['cid'] = $customer['id'];
-	
+			
 			$objCart->setCid($customer['id']);
 
 		?>

@@ -1,6 +1,10 @@
       <?php 
         session_start();
 
+            // echo '<pre>';
+            // var_dump($_SESSION);
+            // echo '</pre>';
+
         require_once('db/DbConnect.php');
         $db   = new DbConnect();
         $conn = $db->connect();

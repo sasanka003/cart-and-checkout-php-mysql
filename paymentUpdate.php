@@ -20,7 +20,7 @@ if (isset($_GET['orderId'])) {
     $objTrans->setCid($_SESSION['cid']);
     $objTrans->setQuantity($cartPrices['itemCount']);
     $objTrans->setAmount( str_replace(',', '', $cartPrices['finalPrice']));
-    $objTrans->setOrderStatus(1);
+    $objTrans->setOrderStatus(2);
     $objTrans->setCreatedOn(date('Y-m-d H:i:s'));
     $tId = $objTrans->saveTransaction();
 
@@ -43,6 +43,10 @@ if (isset($_GET['orderId'])) {
 
         }
     }
+
+    $objCart->removeAllItems();
+
+    $_SESSION['tid'] = $tId;
 
     // Perform actions based on the completed payment
     // For example, update the order status in the database, generate an invoice, etc.
