@@ -1,4 +1,5 @@
 <?php
+require 'credentials.php';
 
 $merchant_id         = $_POST['merchant_id'];
 $order_id            = $_POST['order_id'];
@@ -7,7 +8,7 @@ $payhere_currency    = $_POST['payhere_currency'];
 $status_code         = $_POST['status_code'];
 $md5sig              = $_POST['md5sig'];
 
-$merchant_secret = 'XXXXXXXXXXXXX'; // Replace with your Merchant Secret
+$merchant_secret = MERCHANT_SECRET; // Replace with your Merchant Secret
 
 $local_md5sig = strtoupper(
     md5(

@@ -15,9 +15,19 @@ function paymentGateway() {
 
         // Payment completed. It can be a successful failure.
         payhere.onCompleted = function onCompleted(orderId) {
-            window.location = "invoice.php";
-            console.log("Payment completed. OrderID:" + orderId);
-            // Note: validate the payment and show success or failure page to the customer
+            // Send a request to the server to handle the completion
+            var paymentCompletedXhttp = new XMLHttpRequest();
+
+            paymentCompletedXhttp.onreadystatechange = function () {
+                if (paymentCompletedXhttp.readyState == 4 && paymentCompletedXhttp.status == 200) {
+                    console.log("Payment completed. OrderID:" + orderId);
+                    // Redirect to the invoice page
+                    window.location = "invoice.php";
+                }
+            };
+
+            paymentCompletedXhttp.open("GET", "paymentUpdate.php?orderId=" + orderId, true);
+            paymentCompletedXhttp.send();
         };
 
         // Payment window closed
