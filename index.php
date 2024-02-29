@@ -22,7 +22,9 @@
 		<?php 
 			require 'classes/customer.class.php';
 			$objCustomer = new customer($conn);
-			$objCustomer->setEmail('durgesh@gmail.com');
+
+			//add email from auth customer
+			$objCustomer->setEmail('sasankaprem@gmail.com');
 			$customer = $objCustomer->getCustomerByEmailId();
 			$_SESSION['cid'] = $customer['id'];
 			
